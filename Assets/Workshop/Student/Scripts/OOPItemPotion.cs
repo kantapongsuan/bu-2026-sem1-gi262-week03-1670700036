@@ -9,12 +9,12 @@ public class OOPItemPotion : Identity
 
     public void Start()
     {
-        
+       
     }
     public override void Hit()
     {
         mapGenerator.player.Heal(healPoint);
         Destroy(gameObject);
-        mapGenerator.mapdata[positionX,positionY] = mapGenerator.empty
+        mapGenerator.mapdata[positionX, positionY] = mapGenerator.empty;
     }
 }
