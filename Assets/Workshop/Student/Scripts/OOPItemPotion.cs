@@ -5,15 +5,29 @@ using UnityEngine;
 public class OOPItemPotion : Identity
 {
     public int healPoint;
-    public bool insBonus;
+    public bool isBonues;
 
     public void Start()
     {
-       
+        isBonues = Random.Range(0, 100) < 20 ? true : false;
+        if (isBonues)
+        {
+            GetComponent<SpriteRenderer>().color = Color.blue;
+        }
     }
+
     public override void Hit()
     {
-        mapGenerator.player.Heal(healPoint);
+        if (isBonues)
+        {
+            mapGenerator.player.Heal(healPoint, isBonues);
+            Debug.Log("You got " + Name + " Bonues : " + healPoint * 2);
+        }
+        else
+        {
+            mapGenerator.player.Heal(healPoint);
+            Debug.Log("You got " + Name + " : " + healPoint);
+        }
         Destroy(gameObject);
         mapGenerator.mapdata[positionX, positionY] = mapGenerator.empty;
     }
